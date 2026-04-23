@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+// Structure to hold quiz data [cite: 45]
+struct Quiz {
+    char question[200]; [cite: 47]
+    char options[4][50]; [cite: 49]
+    int correctOption; [cite: 51]
+    char explanation[200]; [cite: 53]
+};
+
+int main() {
+    int score = 0; [cite: 57]
+    int userChoice; [cite: 59]
+
+    // Question Bank Initialization [cite: 61]
+    struct Quiz bank[3] = {
+        {
+            "Which keyword is used to return a value from a function?", [cite: 65]
+            {"1. break", "2. return", "3. continue", "4. exit"}, [cite: 67]
+            2, [cite: 69]
+            "The 'return' keyword sends a value back to the calling function and ends execution." [cite: 71, 72]
+        },
+        {
+            "What is the correct format specifier for an integer in printf()?", [cite: 78, 79]
+            {"1. %f", "2. %c", "3. %d", "4. %s"}, [cite: 81]
+            3, [cite: 84]
+            "%d is used for integers, while %f is for floats and %c is for characters." [cite: 85, 86]
+        },
+        {
+            "Which of these is used to end a statement in C?", [cite: 92]
+            {"1. Period (.)", "2. Comma (,)", "3. Colon (:)", "4. Semicolon (;)"}, [cite: 94, 95]
+            4, [cite: 97]
+            "Every standard statement in C must end with a semicolon (;) to signal the end of the instruction." [cite: 99, 100]
+        }
+    }; [cite: 104]
+
+    printf("--- Welcome to C-Quiz Master ---\n"); [cite: 106]
+
+    // Loop through the question bank [cite: 109]
+    for (int i = 0; i < 3; i++) {
+        printf("Question %d: %s\n", i + 1, bank[i].question); [cite: 110, 111]
+
+        // Print the four options [cite: 113]
+        for (int j = 0; j < 4; j++) {
+            printf("%s\n", bank[i].options[j]); [cite: 115]
+        }
+
+        printf("\nYour Answer (1-4): "); [cite: 119]
+        scanf("%d", &userChoice); [cite: 126]
+
+        // Logic for scoring and remedial feedback [cite: 127]
+        if (userChoice == bank[i].correctOption) {
+            printf("CONGRATULATIONS! Correct answer. +1 Point.\n"); [cite: 128]
+            score++; [cite: 128]
+        } else {
+            printf("INCORRECT.\nExplanation: %s\n", bank[i].explanation); [cite: 131]
+        }
+        printf("--------------------------\n\n"); [cite: 135]
+    }
+
+    // Final Performance Summary [cite: 140]
+    printf("--- FINAL PERFORMANCE SUMMARY ---\n"); [cite: 140]
+    printf("Total Score: %d / 3\n", score); [cite: 142]
+    printf("Correct: %d | Incorrect: %d\n", score, 3 - score); [cite: 144]
+    printf("Thank you for using C-Quiz Master!\n"); [cite: 146]
+
+    return 0; [cite: 148]
+}
